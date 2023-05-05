@@ -4,19 +4,25 @@
   
     
     <entry>
-      <title>测试第一篇文章</title>
-      <link href="/2022/10/28/first-passage/"/>
-      <url>/2022/10/28/first-passage/</url>
+      <title>RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED问题</title>
+      <link href="/2023/05/03/first-passage/"/>
+      <url>/2023/05/03/first-passage/</url>
       
-        <content type="html"><![CDATA[<p>sddsfsdfsfsdfsdf</p>]]></content>
+        <content type="html"><![CDATA[<p>表示显存不足 <br><code>nvidia-smi</code> 查看当前显存占用进程及其pid <br><code>kill</code> 清理一些的占用显存的进程或者改batch_size</p>]]></content>
       
       
       <categories>
           
-          <category> C++ </category>
+          <category> 深度学习 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
       
     </entry>
     
