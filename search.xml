@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>hexo加载公式问题</title>
+      <link href="/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/"/>
+      <url>/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/yexiaohhjk/article/details/82526604">配置方法参考</a></p><p>配置后正常显示公式</p><p><img src="image-20230509153716208.png" alt="image-20230509153716208"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo命令操作</title>
+      <link href="/2023/05/09/hexo%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/"/>
+      <url>/2023/05/09/hexo%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<p><code>hexo new post &quot; &quot;</code>：创建一篇博客</p><p><code>hexo cl</code>：清理public文件夹</p><p><code>hexo g</code>：生成public文件夹</p><p><code>hexo s</code>：启动博客</p><p><code>hexo deploy</code>：本地修改同步至远端</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo加载图片问题</title>
       <link href="/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/"/>
       <url>/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/</url>
