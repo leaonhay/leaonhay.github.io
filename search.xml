@@ -4,11 +4,49 @@
   
     
     <entry>
-      <title>RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED问题</title>
-      <link href="/2023/05/03/first-passage/"/>
-      <url>/2023/05/03/first-passage/</url>
+      <title>hexo加载图片问题</title>
+      <link href="/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/"/>
+      <url>/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/</url>
       
-        <content type="html"><![CDATA[<p>表示显存不足 <br><code>nvidia-smi</code> 查看当前显存占用进程及其pid <br><code>kill</code> 清理一些的占用显存的进程或者改batch_size</p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/476601594">配置方法参考</a></p><p><strong>1、配置图像根目录</strong></p><p><img src="image-20230509151512393.png" alt="image-20230509151512393" style="zoom:50%;" /></p><p><strong>2、删除图像名前面的斜杠</strong></p><p><img src="image-20230509151638033.png" alt="image-20230509151638033" style="zoom:67%;" /></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>反向传播</title>
+      <link href="/2023/05/09/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/"/>
+      <url>/2023/05/09/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/</url>
+      
+        <content type="html"><![CDATA[<p>【1】</p><p>是一种更新训练参数（权重）的技术</p><p>【2】</p><p>从后向前逐层更新参数，但是后层的梯度值需要前层计算所得</p><p>【3】</p><p><img src="image-20230509135540661.png" alt="image-20230509135540661" style="zoom:50%;" /></p><script type="math/tex; mode=display">\begin{aligned}\sigma (·) &: Activation \, function \\f(·)&: Fully\,connected\,layer \\x^l_j &: 第l层上的第j个结点的值 \\ w_{ji}^{l} &: 第l-1层的第i个节点到第l层的第j个结点的权重\end{aligned}\tag{0}</script><script type="math/tex; mode=display">\begin{aligned}x^l_j &= \sum_{i=1} ^{m} w_{ji}^{l}y_{i}^{l-1} +  \theta_{j}^{l} \end{aligned} \tag{1}</script><script type="math/tex; mode=display">\begin{aligned}y_{j} ^ {l} &= \sigma (x_{j}^{l}) \end{aligned} \tag{2}</script><script type="math/tex; mode=display">\bar{y} = f(\sum_{j=1}^{n}y_{j}) \tag{3}</script><script type="math/tex; mode=display">\mathcal L = |y - \bar{y}| \tag{4}</script><p>改变某一个位置的权重，对整体损失函数的影响</p><script type="math/tex; mode=display">\begin{aligned}\frac{ \partial \mathcal L}{\partial w_{ji}^{l}} &= \frac{\partial \mathcal L}{\partial x^l_j} \frac{\partial x^l_j}{\partial w_{ji}^{l}}\end{aligned} \tag{5}</script><p>因此这种连乘的形式给深层网络带来了梯度消失/爆炸问题</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED问题</title>
+      <link href="/2023/05/03/1/"/>
+      <url>/2023/05/03/1/</url>
+      
+        <content type="html"><![CDATA[<p>表示显存不足 \<br><code>nvidia-smi</code> 查看当前显存占用进程及其pid \<br><code>kill</code> 清理一些的占用显存的进程或者改batch_size</p>]]></content>
       
       
       <categories>
