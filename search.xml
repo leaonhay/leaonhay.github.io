@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>lc77</title>
+      <link href="/2023/05/10/lc77/"/>
+      <url>/2023/05/10/lc77/</url>
+      
+        <content type="html"><![CDATA[<p>【题目】<a href="https://leetcode.cn/problems/combinations/description/">lc77</a></p><p>【题意】</p><p><img src="image-20230510180711186.png" alt="image-20230510180711186" style="zoom:33%;" /></p><p>【题解】</p><p><img src="image-20230510180811165.png" alt="image-20230510180811165" style="zoom: 50%;" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 回溯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>转置卷积（Transpose Convolution）</title>
       <link href="/2023/05/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%EF%BC%88Transpose-Convolution%EF%BC%89/"/>
       <url>/2023/05/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%EF%BC%88Transpose-Convolution%EF%BC%89/</url>
