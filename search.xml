@@ -4,6 +4,69 @@
   
     
     <entry>
+      <title>转置卷积（Transpose Convolution）</title>
+      <link href="/2023/05/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%EF%BC%88Transpose-Convolution%EF%BC%89/"/>
+      <url>/2023/05/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%EF%BC%88Transpose-Convolution%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<p>【1】</p><p>卷积的”逆”过程，是一种上采样操作</p><p><img src="Untitled.png" alt="Untitled" style="zoom:50%;" /></p><p>【2】</p><p>通过相对较小的特征图恢复原分辨率大小，可以用来对比学习这些参数的作用</p><p>【3】</p><p>双线性插值：</p><p>转置卷积：</p><script type="math/tex; mode=display">H_{out} = (H_{in} - 1) * S + K - 2P  + 1\tag{1}</script><script type="math/tex; mode=display">W_{out} = (W_{in} - 1) * S + K - 2P + 1\tag{2}</script><p>下采样时的卷积步长大于1，则反卷积时需要设置output_padding</p><script type="math/tex; mode=display">H_{out}=(H_{in}−1)×S−2P+dilation[0]×(K−1)+outputpadding[0]+1</script><p>例如：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">16</span>, <span class="number">6</span>, <span class="number">6</span>)</span><br><span class="line">downsample = nn.Conv2d(<span class="number">16</span>, <span class="number">16</span>, <span class="number">3</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span>)</span><br><span class="line">upsample = nn.ConvTranspose2d(<span class="number">16</span>, <span class="number">16</span>, <span class="number">3</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># torch.Size([1, 16, 6, 6])</span></span><br><span class="line">h = downsample(<span class="built_in">input</span>)</span><br><span class="line"><span class="comment"># torch.Size([1, 16, 12, 12])</span></span><br><span class="line">output = upsample(h, output_size=<span class="built_in">input</span>.size())</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>普通卷积</title>
+      <link href="/2023/05/10/%E6%99%AE%E9%80%9A%E5%8D%B7%E7%A7%AF/"/>
+      <url>/2023/05/10/%E6%99%AE%E9%80%9A%E5%8D%B7%E7%A7%AF/</url>
+      
+        <content type="html"><![CDATA[<p>【1】</p><p>指的是作用于图像的二维卷积，它是一种可以保留邻域信息或下采样的操作</p><p>【2】</p><p>用于提取图像局部特征，如纹理，颜色，深度等</p><p>【3】</p><p>卷积核K：</p><p><img src="Untitled.png" alt="Untitled"></p><p>填充P：</p><p><img src="Untitled-16837099936742.png" alt="Untitled" style="zoom:33%;" /></p><p>步幅S：</p><p><img src="Untitled-16837100168054.png" alt="Untitled" style="zoom:50%;" /></p><p><img src="Untitled-16837100302296.png" alt="Untitled" style="zoom:50%;" /></p><script type="math/tex; mode=display">H_{out} = \frac{H_{in} + 2P - K}{S} + 1 \tag{1}</script><script type="math/tex; mode=display">W_{out} = \frac{W_{in} + 2P - K}{S} + 1 \tag{2}</script><p>注意到当P = K//2 时，保持特征图的大小不变，只改变通道数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels=<span class="number">3</span>,out_channels=<span class="number">64</span>,kernel_size=<span class="number">3</span>,padding=<span class="number">3</span>//<span class="number">2</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED问题</title>
+      <link href="/2023/05/10/RuntimeError-cuDNN-error-CUDNN-STATUS-NOT-INITIALIZED%E9%97%AE%E9%A2%98/"/>
+      <url>/2023/05/10/RuntimeError-cuDNN-error-CUDNN-STATUS-NOT-INITIALIZED%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>表示显存不足<br><code>nvidia-smi</code> 查看当前显存占用进程及其pid<br><code>kill</code> 清理一些的占用显存的进程或者改batch_size</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo加载公式问题</title>
       <link href="/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/"/>
       <url>/2023/05/09/hexo%E5%8A%A0%E8%BD%BD%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/</url>
@@ -78,31 +141,6 @@
         <tags>
             
             <tag> 技术 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED问题</title>
-      <link href="/2023/05/03/1/"/>
-      <url>/2023/05/03/1/</url>
-      
-        <content type="html"><![CDATA[<p>表示显存不足 \\<br><code>nvidia-smi</code> 查看当前显存占用进程及其pid \\<br><code>kill</code> 清理一些的占用显存的进程或者改batch_size</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 深度学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> pytorch </tag>
             
         </tags>
       
