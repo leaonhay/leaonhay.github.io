@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>池化层</title>
+      <link href="/2023/05/12/%E6%B1%A0%E5%8C%96%E5%B1%82/"/>
+      <url>/2023/05/12/%E6%B1%A0%E5%8C%96%E5%B1%82/</url>
+      
+        <content type="html"><![CDATA[<p>【1】</p><p>一种下采样操作。比如可以使图片分辨率变小。</p><p><img src="image-20230512152644339.png" alt="image-20230512152644339" style="zoom: 25%;" /></p><p>【2】</p><p>池化用于特征图压缩，让训练参数变少的同时，提取主要特征。</p><p>【3】</p><p>实现池化的方式有两种，一是使用步长不为一的卷积、二是直接采样。</p><p>使用步长S不为一的卷积：一般情况分子变小而分母变大，固总体变小，即H、W变小</p><script type="math/tex; mode=display">H_{out} = \frac{H_{in} + 2P - K}{S} + 1</script><p>直接采样：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.MaxPool2d(kernel_size, stride)</span><br></pre></td></tr></table></figure><p>E.g.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pool of square window of size=3, stride=2</span></span><br><span class="line">m = nn.MaxPool2d(<span class="number">3</span>, stride=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># pool of non-square window</span></span><br><span class="line">m = nn.MaxPool2d((<span class="number">3</span>, <span class="number">2</span>), stride=(<span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">20</span>, <span class="number">16</span>, <span class="number">50</span>, <span class="number">32</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>全连接层</title>
+      <link href="/2023/05/12/%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82/"/>
+      <url>/2023/05/12/%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82/</url>
+      
+        <content type="html"><![CDATA[<p>【1】</p><p>一种联立前一层所有神经元的技术</p><p><img src="image-20230512150856372.png" alt="image-20230512150856372" style="zoom:50%;" /></p><p>【2】</p><p>可以用于融合所有的层次的特征。</p><p>其缺点是需要巨大参数量计算以及结构信息的缺失（如平移不变性，需要调整额外参数学习这种特性）</p><p>【3】</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Linear(in_features,out_features)</span><br></pre></td></tr></table></figure><p>E.g.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m = nn.Linear(<span class="number">20</span>, <span class="number">30</span>)</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">128</span>, <span class="number">20</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br><span class="line"><span class="built_in">print</span>(output.size())</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>lc77</title>
       <link href="/2023/05/10/lc77/"/>
       <url>/2023/05/10/lc77/</url>
@@ -42,11 +92,11 @@
     
     
     <entry>
-      <title>普通卷积</title>
+      <title>卷积层</title>
       <link href="/2023/05/10/%E6%99%AE%E9%80%9A%E5%8D%B7%E7%A7%AF/"/>
       <url>/2023/05/10/%E6%99%AE%E9%80%9A%E5%8D%B7%E7%A7%AF/</url>
       
-        <content type="html"><![CDATA[<p>【1】</p><p>指的是作用于图像的二维卷积，它是一种可以保留邻域信息或下采样的操作</p><p>【2】</p><p>用于提取图像局部特征，如纹理，颜色，深度等</p><p>【3】</p><p>卷积核K：</p><p><img src="Untitled.png" alt="Untitled"></p><p>填充P：</p><p><img src="Untitled-16837099936742.png" alt="Untitled" style="zoom:33%;" /></p><p>步幅S：</p><p><img src="Untitled-16837100168054.png" alt="Untitled" style="zoom:50%;" /></p><p><img src="Untitled-16837100302296.png" alt="Untitled" style="zoom:50%;" /></p><script type="math/tex; mode=display">H_{out} = \frac{H_{in} + 2P - K}{S} + 1 \tag{1}</script><script type="math/tex; mode=display">W_{out} = \frac{W_{in} + 2P - K}{S} + 1 \tag{2}</script><p>注意到当P = K//2 时，保持特征图的大小不变，只改变通道数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels=<span class="number">3</span>,out_channels=<span class="number">64</span>,kernel_size=<span class="number">3</span>,padding=<span class="number">3</span>//<span class="number">2</span>)</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>【1】</p><p>指的是作用于图像的二维卷积，它是一种提取保留邻域信息或下采样的操作</p><p>【2】</p><p>用于提取图像局部特征，如纹理，颜色，深度等；<br>其优点是权重共享方式（共用一个卷积核），可以等价于实现平移不变性且参数相对较少。</p><p>【3】</p><p>卷积核K：</p><p><img src="Untitled.png" alt="Untitled"></p><p>填充P：</p><p><img src="Untitled-16837099936742.png" alt="Untitled" style="zoom:33%;" /></p><p>步幅S：</p><p><img src="Untitled-16837100168054.png" alt="Untitled" style="zoom:50%;" /></p><p><img src="Untitled-16837100302296.png" alt="Untitled" style="zoom:50%;" /></p><script type="math/tex; mode=display">H_{out} = \frac{H_{in} + 2P - K}{S} + 1 \tag{1}</script><script type="math/tex; mode=display">W_{out} = \frac{W_{in} + 2P - K}{S} + 1 \tag{2}</script><p>注意到当P = K//2 时，保持特征图的大小不变，只改变通道数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels=<span class="number">3</span>,out_channels=<span class="number">64</span>,kernel_size=<span class="number">3</span>,padding=<span class="number">3</span>//<span class="number">2</span>)</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels, out_channels, kernel_size, padding)</span><br></pre></td></tr></table></figure><p>E.g.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># With square kernels and equal stride</span><br><span class="line">m = nn.Conv2d(16, 33, 3, stride=2)</span><br><span class="line"># non-square kernels and unequal stride and with padding</span><br><span class="line">m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))</span><br><span class="line"># non-square kernels and unequal stride and with padding and dilation</span><br><span class="line">m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2), dilation=(3, 1))</span><br><span class="line">input = torch.randn(20, 16, 50, 100)</span><br><span class="line">output = m(input)</span><br></pre></td></tr></table></figure></p>]]></content>
       
       
       <categories>
@@ -153,7 +203,7 @@
       <link href="/2023/05/09/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/"/>
       <url>/2023/05/09/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/</url>
       
-        <content type="html"><![CDATA[<p>【1】</p><p>是一种更新训练参数（权重）的技术</p><p>【2】</p><p>从后向前逐层更新参数，但是后层的梯度值需要前层计算所得</p><p>【3】</p><p><img src="image-20230509135540661.png" alt="image-20230509135540661" style="zoom:50%;" /></p><script type="math/tex; mode=display">\begin{aligned}\sigma (·) &: Activation \, function \\f(·)&: Fully\,connected\,layer \\x^l_j &: 第l层上的第j个结点的值 \\ w_{ji}^{l} &: 第l-1层的第i个节点到第l层的第j个结点的权重\end{aligned}\tag{0}</script><script type="math/tex; mode=display">\begin{aligned}x^l_j &= \sum_{i=1} ^{m} w_{ji}^{l}y_{i}^{l-1} +  \theta_{j}^{l} \end{aligned} \tag{1}</script><script type="math/tex; mode=display">\begin{aligned}y_{j} ^ {l} &= \sigma (x_{j}^{l}) \end{aligned} \tag{2}</script><script type="math/tex; mode=display">\bar{y} = f(\sum_{j=1}^{n}y_{j}) \tag{3}</script><script type="math/tex; mode=display">\mathcal L = |y - \bar{y}| \tag{4}</script><p>改变某一个位置的权重，对整体损失函数的影响</p><script type="math/tex; mode=display">\begin{aligned}\frac{ \partial \mathcal L}{\partial w_{ji}^{l}} &= \frac{\partial \mathcal L}{\partial x^l_j} \frac{\partial x^l_j}{\partial w_{ji}^{l}}\end{aligned} \tag{5}</script><p>因此这种连乘的形式给深层网络带来了梯度消失/爆炸问题</p><script type="math/tex; mode=display">\begin{aligned}w_{ji}^{l} = w_{ji}^{l}  - \mathcal \alpha \frac{\partial \mathcal L}{\partial w_{ji}^{l}}\end{aligned} \tag{6}</script><p>导致最终很难持续学习下去</p>]]></content>
+        <content type="html"><![CDATA[<p>【1】</p><p>是一种更新训练参数（权重）的技术</p><p>【2】</p><p>从后向前逐层更新参数，但是后层的梯度值需要前层计算所得</p><p>【3】</p><p><img src="image-20230509135540661.png" alt="image-20230509135540661" style="zoom:50%;" /></p><script type="math/tex; mode=display">\begin{aligned}\sigma (·) &: Activation \, function \\f(·)&: Fully\,connected\,layer \\x^l_j &: 第l层上的第j个结点的值 \\ w_{ji}^{l} &: 第l-1层的第i个节点到第l层的第j个结点的权重\end{aligned}\tag{0}</script><script type="math/tex; mode=display">\begin{aligned}x^l_j &= \sum_{i=1} ^{m} w_{ji}^{l}y_{i}^{l-1} +  \theta_{j}^{l} \end{aligned} \tag{1}</script><script type="math/tex; mode=display">\begin{aligned}y_{j} ^ {l} &= \sigma (x_{j}^{l}) \end{aligned} \tag{2}</script><script type="math/tex; mode=display">\bar{y} = f(\sum_{j=1}^{n}y_{j}) \tag{3}</script><script type="math/tex; mode=display">\mathcal L = |y - \bar{y}| \tag{4}</script><p>改变某一个位置的权重，对整体损失函数的影响</p><script type="math/tex; mode=display">\begin{aligned}\frac{ \partial \mathcal L}{\partial w_{ji}^{l}} &= \frac{\partial \mathcal L}{\partial x^l_j} \frac{\partial x^l_j}{\partial w_{ji}^{l}}\end{aligned} \tag{5}</script><p>因此这种连乘的形式给深层网络带来了梯度消失/爆炸问题</p><script type="math/tex; mode=display">\begin{aligned}w_{ji}^{l} = w_{ji}^{l}  - \mathcal \alpha \frac{\partial \mathcal L}{\partial w_{ji}^{l}}\end{aligned} \tag{6}</script><p>导致最终很难持续学习下去</p><p>E.g.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">optimizer.zero_grad()</span><br><span class="line">loss.backward()</span><br><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
