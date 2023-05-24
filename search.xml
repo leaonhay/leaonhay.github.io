@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>ERROR 1819 (HY000): Your password does not satisfy the current policy requirements</title>
+      <link href="/2023/05/24/ERROR-1819-HY000-Your-password-does-not-satisfy-the-current-policy-requirements/"/>
+      <url>/2023/05/24/ERROR-1819-HY000-Your-password-does-not-satisfy-the-current-policy-requirements/</url>
+      
+        <content type="html"><![CDATA[<p>在修改密码时，报该错误，这是由于安全策略引起的，默认为Medium。</p><p>修改安全策略等级前需要先设置密码</p><p>详情见<code>[ERROR1820]</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement</title>
+      <link href="/2023/05/24/ERROR-1820-HY000-You-must-reset-your-password-using-ALTER-USER-statement-before-executing-this-statement/"/>
+      <url>/2023/05/24/ERROR-1820-HY000-You-must-reset-your-password-using-ALTER-USER-statement-before-executing-this-statement/</url>
+      
+        <content type="html"><![CDATA[<p>这是由于安全策略引起的，当直接修改安全策略等级时则会显示。</p><p>因此需要先修改一个复杂点的密码，再继而修改密码安全策略等级</p><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 首先启动mysql</span><br><span class="line">systemctl start mysqld.<span class="property">service</span></span><br><span class="line"></span><br><span class="line"># 查看初始密码 </span><br><span class="line">grep <span class="string">&quot;password&quot;</span> /<span class="keyword">var</span>/log/mysqld.<span class="property">log</span></span><br><span class="line"></span><br><span class="line"># 使用临时密码进入数据库，修改复杂密码:大小写字母加特殊符号</span><br><span class="line">alter user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified by <span class="string">&#x27;密码&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable constant_">SHOW</span> <span class="variable constant_">VARIABLES</span> <span class="variable constant_">LIKE</span> <span class="string">&#x27;validate_password%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"># 更改安全策略等级</span><br><span class="line">set <span class="variable language_">global</span> validate_password_policy=<span class="variable constant_">LOW</span>;</span><br><span class="line"></span><br><span class="line"># 保存配置</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>格拉姆矩阵（Gram Matrix）</title>
       <link href="/2023/05/14/%E6%A0%BC%E6%8B%89%E5%A7%86%E7%9F%A9%E9%98%B5%EF%BC%88Gram-Matrix%EF%BC%89/"/>
       <url>/2023/05/14/%E6%A0%BC%E6%8B%89%E5%A7%86%E7%9F%A9%E9%98%B5%EF%BC%88Gram-Matrix%EF%BC%89/</url>
